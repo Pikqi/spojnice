@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Browse games">
+  <section class="hero">
+    <p class="eyebrow">Learn by connecting the dots</p>
+    <h1>Match what belongs together.</h1>
+    <p class="lede">Play a quick round or make a private study game from a simple JSON file.</p>
+    <a class="button" href="/create">Create your own game <span aria-hidden="true">→</span></a>
+  </section>
+
+  <section class="directory" aria-labelledby="directory-title">
+    <div class="section-heading">
+      <div><p class="eyebrow">Community shelf</p><h2 id="directory-title">Public games</h2></div>
+      <label class="search-label"> <span class="sr-only">Search public games</span>
+        <input id="game-search" type="search" placeholder="Search games…" autocomplete="off" />
+      </label>
+    </div>
+    <div id="game-list" class="game-grid" aria-live="polite"><p class="muted">Loading games…</p></div>
+  </section>
+</Layout>
+<script src="../scripts/home.ts"></script>

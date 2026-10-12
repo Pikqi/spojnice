@@ -1,0 +1,24 @@
+---
+import '../styles/global.css';
+const { title = 'Matchwise', description = 'Create and play simple matching games.' } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <title>{title} · Matchwise</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Matchwise home"><span aria-hidden="true">✦</span> Matchwise</a>
+      <nav aria-label="Main navigation">
+        <a href="/">Browse</a>
+        <a class="button button-small" href="/create">Create a game</a>
+      </nav>
+    </header>
+    <main class="page-shell"><slot /></main>
+    <footer class="site-footer">Simple matching games for curious minds.</footer>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+const gameUrl = Astro.url.searchParams.get('game') || '/';
+---
+<Layout title="Game created">
+  <section class="narrow-page success-page">
+    <div class="success-icon" aria-hidden="true">✓</div>
+    <p class="eyebrow">Ready to play</p>
+    <h1>Your game is saved.</h1>
+    <p class="lede">Keep this link to play or share your game. Games are permanent and cannot be edited.</p>
+    <div class="share-box">
+      <label for="share-url">Game link</label>
+      <div class="share-controls"><input id="share-url" value={new URL(gameUrl, Astro.url).href} readonly /><button id="copy-link" class="button button-small" type="button">Copy link</button></div>
+      <p id="copy-status" class="muted" role="status"></p>
+    </div>
+    <div class="button-row"><a class="button" href={gameUrl}>Play game <span aria-hidden="true">→</span></a><a class="button button-quiet" href="/">Browse games</a></div>
+  </section>
+</Layout>
+<script>
+  const button = document.querySelector<HTMLButtonElement>('#copy-link');
+  const url = document.querySelector<HTMLInputElement>('#share-url');
+  const status = document.querySelector<HTMLParagraphElement>('#copy-status');
+  button?.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(url?.value || '');
+      if (status) status.textContent = 'Link copied to clipboard.';
+    } catch {
+      url?.select();
+      if (status) status.textContent = 'Select and copy the link above.';
+    }
+  });
+</script>

@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Create a game">
+  <section class="narrow-page">
+    <p class="eyebrow">Make a study set</p>
+    <h1>Turn your notes into a game.</h1>
+    <p class="lede">Fill in the form below to make a game without writing JSON. You can still import or edit JSON if you prefer.</p>
+
+    <form id="create-form" class="stack" novalidate>
+      <div class="form-card">
+        <div class="section-heading compact"><div><p class="eyebrow">Step 1</p><h2>Describe your game</h2><p class="muted">Add the title and the two kinds of things players will match.</p></div></div>
+        <div class="field-grid">
+          <div class="field-wide"><label for="game-title">Game title <span class="required">*</span></label><input id="game-title" type="text" maxlength="160" placeholder="e.g. Ham Radio Country Prefixes" /></div>
+          <div class="field-wide"><label for="game-description">Description <span class="optional">(optional)</span></label><textarea id="game-description" rows="2" maxlength="2000" placeholder="What should players match?"></textarea></div>
+          <div><label for="left-label">First column <span class="required">*</span></label><input id="left-label" type="text" placeholder="e.g. Country" /></div>
+          <div><label for="right-label">Second column <span class="required">*</span></label><input id="right-label" type="text" placeholder="e.g. Prefix" /></div>
+        </div>
+
+        <div class="pairs-heading"><div><p class="eyebrow">Step 2</p><h2>Your matching pairs</h2><p class="muted">Add at least two pairs. Each answer must be unique within its column.</p></div><button id="add-pair" class="button button-small button-quiet" type="button"><span aria-hidden="true">＋</span> Add pair</button></div>
+        <div id="pair-editor" class="pair-editor" aria-label="Matching pairs"></div>
+        <p class="pair-count muted" id="pair-count">2 pairs</p>
+
+        <details class="json-tools">
+          <summary>Import from JSON instead</summary>
+          <p class="muted">Already have a file? Import it here and the form will fill in automatically.</p>
+          <label class="file-drop" for="json-file"><span class="file-icon" aria-hidden="true">↑</span><strong>Choose a JSON file</strong><span id="file-name" class="muted">or paste JSON below</span></label>
+          <input id="json-file" type="file" accept="application/json,.json" />
+          <label for="json-input">Game JSON</label>
+          <textarea id="json-input" rows="10" placeholder="Paste your game JSON here…" spellcheck="false"></textarea>
+          <button id="import-json" class="button button-small button-quiet" type="button">Fill form from JSON</button>
+        </details>
+
+        <div id="validation-errors" class="alert alert-error" role="alert" hidden></div>
+        <button id="preview-button" class="button" type="submit">Preview game <span aria-hidden="true">→</span></button>
+      </div>
+
+      <section id="preview-section" class="form-card" hidden aria-labelledby="preview-title">
+        <div class="section-heading compact"><div><p class="eyebrow">Check your work</p><h2 id="preview-title">Preview</h2></div><span class="pill">Not saved yet</span></div>
+        <div id="preview-content"></div>
+        <fieldset class="visibility-options"><legend>Who can play?</legend>
+          <label class="choice"><input type="radio" name="visibility" value="private" checked /><span><strong>Private / unlisted</strong><small>Anyone with the link can play. It will not appear in Browse.</small></span></label>
+          <label class="choice"><input type="radio" name="visibility" value="public" /><span><strong>Public</strong><small>Anyone can find it in the public directory and play it.</small></span></label>
+        </fieldset>
+        <p id="create-errors" class="alert alert-error" role="alert" hidden></p>
+        <button id="create-button" class="button" type="button">Save and get link <span aria-hidden="true">→</span></button>
+      </section>
+    </form>
+  </section>
+</Layout>
+<script src="../scripts/create.ts"></script>

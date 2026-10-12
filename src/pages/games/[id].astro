@@ -1,0 +1,14 @@
+---
+import Layout from '../../layouts/Layout.astro';
+const id = Astro.params.id;
+---
+<Layout title="Play game">
+  <section id="game-app" class="narrow-page game-page" data-game-id={id}>
+    <div id="game-loading" class="center-message"><span class="spinner" aria-hidden="true"></span><p>Loading game…</p></div>
+    <div id="game-error" class="alert alert-error" role="alert" hidden></div>
+    <div id="setup-screen" hidden></div>
+    <div id="play-screen" hidden></div>
+    <div id="summary-screen" hidden></div>
+  </section>
+</Layout>
+<script src="../../scripts/game.ts"></script>

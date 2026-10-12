@@ -1,0 +1,21 @@
+{
+  "title": "Ham Radio Band Plan: Meters to MHz",
+  "description": "Match common amateur-radio wavelength bands with their representative frequency in megahertz. Exact allocations and band edges vary by country and license class.",
+  "leftColumnLabel": "Wavelength",
+  "rightColumnLabel": "Frequency",
+  "pairs": [
+    { "left": "160 meters", "right": "1.8 MHz" },
+    { "left": "80 meters", "right": "3.5 MHz" },
+    { "left": "60 meters", "right": "5.3 MHz" },
+    { "left": "40 meters", "right": "7 MHz" },
+    { "left": "30 meters", "right": "10.1 MHz" },
+    { "left": "20 meters", "right": "14 MHz" },
+    { "left": "17 meters", "right": "18.1 MHz" },
+    { "left": "15 meters", "right": "21 MHz" },
+    { "left": "12 meters", "right": "24.9 MHz" },
+    { "left": "10 meters", "right": "28 MHz" },
+    { "left": "6 meters", "right": "50 MHz" },
+    { "left": "2 meters", "right": "144 MHz" },
+    { "left": "70 centimeters", "right": "420 MHz" }
+  ]
+}

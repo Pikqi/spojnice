@@ -1,0 +1,12 @@
+{
+  "title": "Ham Radio Country Prefixes",
+  "description": "Match countries to their callsign prefixes.",
+  "leftColumnLabel": "Country",
+  "rightColumnLabel": "Prefix",
+  "pairs": [
+    { "left": "England", "right": "G" },
+    { "left": "Serbia", "right": "YU" },
+    { "left": "Germany", "right": "DL" },
+    { "left": "France", "right": "F" }
+  ]
+}
