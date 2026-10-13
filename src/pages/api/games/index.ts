@@ -5,8 +5,8 @@ import { validateGame, type Visibility } from '../../../lib/validation';
 
 export const prerender = false;
 
-export const GET: APIRoute = ({ url }) => {
-  const games = listPublicGames(url.searchParams.get('q') || '').map(({ visibility, ...game }) => ({ ...game, visibility }));
+export const GET: APIRoute = async ({ url }) => {
+  const games = (await listPublicGames(url.searchParams.get('q') || '')).map(({ visibility, ...game }) => ({ ...game, visibility }));
   return Response.json({ games });
 };
 
@@ -28,6 +28,6 @@ export const POST: APIRoute = async ({ request }) => {
   do {
     id = randomBytes(18).toString('base64url');
   } while (false);
-  const game = insertGame(id, result.value, visibility);
+  const game = await insertGame(id, result.value, visibility);
   return Response.json({ id: game.id, url: `/games/${game.id}`, game }, { status: 201 });
 };
