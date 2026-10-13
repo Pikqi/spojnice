@@ -10,7 +10,7 @@ const gameUrl = Astro.url.searchParams.get('game') || '/';
     <p class="lede">Keep this link to play or share your game. Games are permanent and cannot be edited.</p>
     <div class="share-box">
       <label for="share-url">Game link</label>
-      <div class="share-controls"><input id="share-url" value={new URL(gameUrl, Astro.url).href} readonly /><button id="copy-link" class="button button-small" type="button">Copy link</button></div>
+      <div class="share-controls"><input id="share-url" value={gameUrl} readonly /><button id="copy-link" class="button button-small" type="button">Copy link</button></div>
       <p id="copy-status" class="muted" role="status"></p>
     </div>
     <div class="button-row"><a class="button" href={gameUrl}>Play game <span aria-hidden="true">→</span></a><a class="button button-quiet" href="/">Browse games</a></div>
@@ -20,6 +20,7 @@ const gameUrl = Astro.url.searchParams.get('game') || '/';
   const button = document.querySelector<HTMLButtonElement>('#copy-link');
   const url = document.querySelector<HTMLInputElement>('#share-url');
   const status = document.querySelector<HTMLParagraphElement>('#copy-status');
+  if (url) url.value = new URL(url.value, window.location.origin).href;
   button?.addEventListener('click', async () => {
     try {
       await navigator.clipboard.writeText(url?.value || '');
