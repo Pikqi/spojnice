@@ -41,7 +41,6 @@ export function validateGame(value: unknown): ValidationResult {
     if (source.pairs.length < 2) errors.push('Add at least two pairs.');
     if (source.pairs.length > 1_000) errors.push('A game can contain at most 1,000 pairs.');
     const lefts = new Set<string>();
-    const rights = new Set<string>();
     source.pairs.forEach((pair, index) => {
       if (!pair || typeof pair !== 'object' || Array.isArray(pair)) {
         errors.push(`Pair ${index + 1} must be an object.`);
@@ -53,11 +52,8 @@ export function validateGame(value: unknown): ValidationResult {
       if (!left) errors.push(`Pair ${index + 1} has an empty left answer.`);
       if (!right) errors.push(`Pair ${index + 1} has an empty right answer.`);
       const leftKey = left.toLocaleLowerCase();
-      const rightKey = right.toLocaleLowerCase();
       if (left && lefts.has(leftKey)) errors.push(`Duplicate left answer: “${left}”.`);
-      if (right && rights.has(rightKey)) errors.push(`Duplicate right answer: “${right}”.`);
       if (left) lefts.add(leftKey);
-      if (right) rights.add(rightKey);
     });
   }
 

@@ -1,0 +1,26 @@
+{
+  "title": "QTH lokatori: validan ili nevalidan format",
+  "description": "Razvrstaj Maidenhead QTH lokatore prema formatu. Validan ovde znači da je tekst sintaktički ispravan lokator od 2, 4, 6, 8 ili 10 znakova; ne proverava se da li lokator označava stvarnu lokaciju.",
+  "leftColumnLabel": "QTH lokator",
+  "rightColumnLabel": "Format",
+  "pairs": [
+    { "left": "JN94", "right": "Validan" },
+    { "left": "JN94IB", "right": "Validan" },
+    { "left": "JN94IB27", "right": "Validan" },
+    { "left": "JN94IB27LM", "right": "Validan" },
+    { "left": "AA00", "right": "Validan" },
+    { "left": "RR99XX", "right": "Validan" },
+    { "left": "JN95", "right": "Validan" },
+    { "left": "AB12CD34", "right": "Validan" },
+    { "left": "JS94", "right": "Nevalidan" },
+    { "left": "JN9", "right": "Nevalidan" },
+    { "left": "JN940B", "right": "Nevalidan" },
+    { "left": "JN94YB", "right": "Nevalidan" },
+    { "left": "JN94IB2", "right": "Nevalidan" },
+    { "left": "JN94IB270", "right": "Nevalidan" },
+    { "left": "JN94IB27YZ", "right": "Nevalidan" },
+    { "left": "J194IB", "right": "Nevalidan" },
+    { "left": "JN94-IB", "right": "Nevalidan" },
+    { "left": "JN94IB2712", "right": "Nevalidan" }
+  ]
+}

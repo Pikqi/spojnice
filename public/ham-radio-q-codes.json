@@ -1,0 +1,26 @@
+{
+  "title": "Radioamaterski Q-kodovi",
+  "description": "Poveži najčešće Q-kodove sa njihovim značenjem u radioamaterskoj komunikaciji.",
+  "leftColumnLabel": "Q-kod",
+  "rightColumnLabel": "Značenje",
+  "pairs": [
+    { "left": "QRG", "right": "Koja je moja tačna frekvencija?" },
+    { "left": "QRL", "right": "Da li je frekvencija zauzeta?" },
+    { "left": "QRM", "right": "Smetnje od drugih stanica" },
+    { "left": "QRN", "right": "Atmosferske smetnje" },
+    { "left": "QRO", "right": "Povećaj snagu predajnika" },
+    { "left": "QRP", "right": "Smanji snagu predajnika" },
+    { "left": "QRQ", "right": "Šalji brže" },
+    { "left": "QRS", "right": "Šalji sporije" },
+    { "left": "QRT", "right": "Prekini emitovanje" },
+    { "left": "QRV", "right": "Spreman sam" },
+    { "left": "QRX", "right": "Sačekaj; javiću se kasnije" },
+    { "left": "QRZ", "right": "Ko me poziva?" },
+    { "left": "QSB", "right": "Slabljenje i kolebanje signala" },
+    { "left": "QSL", "right": "Potvrđujem prijem" },
+    { "left": "QSO", "right": "Radio-veza ili radio-razgovor" },
+    { "left": "QSY", "right": "Pređi na drugu frekvenciju" },
+    { "left": "QTH", "right": "Moja lokacija" },
+    { "left": "QTR", "right": "Tačno vreme" }
+  ]
+}

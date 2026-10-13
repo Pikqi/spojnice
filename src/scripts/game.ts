@@ -57,7 +57,10 @@ function renderRound() {
   const pairs = rounds[roundIndex];
   matched = new Set(); selected = null;
   const leftItems = shuffle(pairs.map((pair, id) => ({ id, text: pair.left, side: 'left' as const })));
-  const rightItems = shuffle(pairs.map((pair, id) => ({ id, text: pair.right, side: 'right' as const })));
+  const classification = hasRepeatedRightAnswers();
+  const rightItems = classification
+    ? shuffle(uniqueRightItems())
+    : shuffle(pairs.map((pair, id) => ({ id, text: pair.right, side: 'right' as const })));
   if (!play) return;
   play.innerHTML = `
     <div class="play-top"><div><p class="eyebrow">Round ${roundIndex + 1} of ${rounds.length}</p><h1>${escapeHtml(game.title)}</h1></div><div class="mistakes"><span aria-hidden="true">✕</span> <strong id="mistake-count">${mistakes}</strong> mistakes</div></div>
@@ -90,13 +93,21 @@ function choose(button: HTMLButtonElement) {
     return;
   }
   const first = selected;
-  const isCorrect = first.id === item.id;
+  const isCorrect = isMatch(first, item);
   const firstButton = play.querySelector<HTMLButtonElement>(`.match-item[data-id="${first.id}"][data-side="${first.side}"]`);
   const buttons = [firstButton, button].filter((candidate): candidate is HTMLButtonElement => candidate !== null);
   buttons.forEach((candidate) => candidate.classList.add(isCorrect ? 'correct' : 'incorrect'));
   if (isCorrect) {
-    matched.add(item.id); selected = null;
-    buttons.forEach((candidate) => { candidate.disabled = true; candidate.setAttribute('aria-label', `${candidate.textContent} — matched ✓`); });
+    const pairId = first.side === 'left' ? first.id : item.id;
+    matched.add(pairId);
+    selected = null;
+    buttons.forEach((candidate) => {
+      const shouldDisable = candidate.dataset.side === 'left' || !hasRepeatedRightAnswers();
+      if (shouldDisable) {
+        candidate.disabled = true;
+        candidate.setAttribute('aria-label', `${candidate.textContent} — matched ✓`);
+      }
+    });
     updateProgress();
     setFeedback('Correct! ✓', 'positive');
     if (matched.size === rounds[roundIndex].length) window.setTimeout(roundComplete, 650);
@@ -106,6 +117,35 @@ function choose(button: HTMLButtonElement) {
     setFeedback('Not a match — try again. ✕', 'negative');
     window.setTimeout(() => buttons.forEach((candidate) => { candidate.classList.remove('incorrect', 'selected'); }), 650);
   }
+}
+
+function hasRepeatedRightAnswers() {
+  return new Set(game.pairs.map((pair) => normalize(pair.right))).size < game.pairs.length;
+}
+
+function uniqueRightItems(): Item[] {
+  const seen = new Set<string>();
+  return rounds[roundIndex].reduce<Item[]>((items, pair, index) => {
+    const key = normalize(pair.right);
+    if (!seen.has(key)) {
+      seen.add(key);
+      items.push({ id: index, text: pair.right, side: 'right' });
+    }
+    return items;
+  }, []);
+}
+
+function isMatch(first: Item, second: Item) {
+  if (hasRepeatedRightAnswers()) {
+    const left = first.side === 'left' ? first : second;
+    const right = first.side === 'right' ? first : second;
+    return normalize(rounds[roundIndex][left.id]?.right || '') === normalize(right.text);
+  }
+  return first.id === second.id;
+}
+
+function normalize(value: string) {
+  return value.trim().toLocaleLowerCase();
 }
 
 function roundComplete() {
