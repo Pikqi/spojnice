@@ -18,7 +18,7 @@
 
 ## Persistence and data
 
-- Games are stored as an atomic JSON document at `data/games.json`; `DATA_DIR` can relocate the data directory.
+- Games are stored as one atomic JSON file per game at `data/<id>.json`; `DATA_DIR` can relocate the data directory. Older `data/games.json` files remain readable for compatibility.
 - `data/` is gitignored and local-only. Do not delete or overwrite existing game data while developing.
 - Game records are immutable through the app: creation appends a record, while public browsing filters by `visibility` and search text.
 - `public/example-game.json` is the canonical downloadable input example; keep it valid when changing the game schema.
