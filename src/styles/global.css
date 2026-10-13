@@ -14,7 +14,10 @@ nav { align-items: center; display: flex; gap: 25px; }
 nav a:not(.button), .text-link { color: var(--muted); font-size: .9rem; text-decoration: none; }
 nav a:not(.button):hover, .text-link:hover { color: var(--green); }
 .page-shell { margin: 0 auto; max-width: 1180px; padding: 44px 28px 90px; }
-.site-footer { border-top: 1px solid var(--line); color: var(--muted); font-size: .8rem; margin: 0 auto; max-width: 1180px; padding: 25px 28px 45px; }
+.site-footer { align-items: center; border-top: 1px solid var(--line); color: var(--muted); display: flex; font-size: .8rem; justify-content: space-between; margin: 0 auto; max-width: 1180px; padding: 25px 28px 45px; }
+.github-link { color: var(--muted); display: inline-flex; transition: color .2s; }
+.github-link:hover { color: var(--green); }
+.github-link svg { height: 22px; width: 22px; }
 h1, h2, h3, p { margin-top: 0; }
 h1, h2 { font-family: Fraunces, Georgia, serif; letter-spacing: -.025em; }
 h1 { font-size: clamp(2.8rem, 7vw, 5.3rem); line-height: .98; margin-bottom: 24px; max-width: 760px; }
